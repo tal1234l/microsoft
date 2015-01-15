@@ -1,7 +1,7 @@
 {
-  "name": "workflows",
+  "name": "tessel rocks",
   "version": "0.0.1",
-  "description": "A seed project workflow",
+  "description": "tessel project",
   "author": "Tal Waserman",
   "main": "server.js",
   "private": true,
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/tal1234l/workflow.git"
+    "url": "https://github.com/tal1234l/microsoft.git"
   },
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
