@@ -5,12 +5,6 @@ var mongoose  = require('mongoose');
 var bcrypt = require('bcrypt-nodejs');
 var Schema = mongoose.Schema;
 
-//All DIDNumbers
-var DIDNumber = new Schema({
-    DID:       String
-    ,country:   String
-    ,in_use:    Boolean
-});
 
 //All Users
 var Users = new Schema({
@@ -44,5 +38,4 @@ Users.methods.comparePasswords = function(password, callback){
  bcrypt.compare(password, this.password, callback);
 }
 
-module.exports.DIDNumber = mongoose.model('DIDNumber',DIDNumber);
 module.exports.Users = mongoose.model('Users',Users);

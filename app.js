@@ -26,7 +26,7 @@ module.exports = function() {
     /*app.use(session({secret: 'secretIdentity13112014', resave: true, cookie: { secure: true }, saveUninitialized: true }));*/
     app.use(passport.initialize());
     passport.serializeUser(function(user, done){
-       done(null, user.id);
+        done(null, user.id);
     });
     app.use(passport.session()); // persistent login sessions
     app.use(flash());            // use connect-flash for flash messages stored in session
@@ -53,18 +53,18 @@ module.exports = function() {
 
     //passport strategies
     var loginStrategy = new localStrategy({usernameField: 'name'}, function(name, password, done){
-            AllSchemas.Users.findOne({name: name},function(err, user){
-                if(err) return  done('user not found');
-                if(!user) return done('wrong user name / password');
+        AllSchemas.Users.findOne({name: name},function(err, user){
+            if(err) return  done('user not found');
+            if(!user) return done('wrong user name / password');
 
-                user.comparePasswords(password, function(err, isMatch){
-                    if(err) return  done(null, false, {message:'wrong input'});
-                    if(!isMatch) return  done(null, false, {message:'wrong user name / password'});
-                    return done(null,user);
+            user.comparePasswords(password, function(err, isMatch){
+                if(err) return  done(null, false, {message:'wrong input'});
+                if(!isMatch) return  done(null, false, {message:'wrong user name / password'});
+                return done(null,user);
 
-                });
             });
         });
+    });
     var registerStrategy = new localStrategy({usernameField: 'name'},function(name, password, done){
         AllSchemas.Users.findOne({name: name},function(err, user){
             if(err) return  done('user not found');
@@ -88,10 +88,8 @@ module.exports = function() {
     //API'S
     app.post('/registerUser',passport.authenticate('local-register'), routes.createNewUsers);
     app.post('/loginUser', passport.authenticate('local-login'), routes.loginUser);
-    app.post('/newDID', routes.createNewDIDNumber);
-    app.get('/getDIDNumber/:country', routes.getDIDNumber);
-    app.post('/freeDIDNumber',routes.freeDIDNumber);
-    app.get('/getIdentities',routes.getIdentities);
+    app.get('/get-temp', routes.gettemp);
+    app.get('/get-current-temp', routes.getcurrenttemp);
 
     app.get('/*',function(req, res, next){
         res.redirect('http://' + req.headers.host + '/');

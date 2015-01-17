@@ -21,16 +21,10 @@ mainApp.config(['$locationProvider','$urlRouterProvider','$stateProvider','$http
         })
 
         // route for the contact page
-        .state('contact', {
-            url:'/contact',
-            templateUrl : '/pages/contact.html',
-            controller: 'contactController'
-        })
-        // route for the identities page
-        .state('identities', {
-            url:'/identities',
-            templateUrl : '/pages/identities.html',
-            controller: 'identitiesController'
+        .state('temperature', {
+            url:'/temperature',
+            templateUrl : '/pages/temperature.html',
+            controller: 'temperatureController'
         })
         // route for the login page
         .state('register', {
@@ -44,7 +38,7 @@ mainApp.config(['$locationProvider','$urlRouterProvider','$stateProvider','$http
             controller: 'loginController'
         });
 
-        $httpProvider.interceptors.push('authInterceptor');
+    $httpProvider.interceptors.push('authInterceptor');
 
 }]).constant('API_URL','http://'+ window.location.host);
 
